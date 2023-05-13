@@ -16,12 +16,13 @@ for x in range(0, img1.shape[0]):
             img3[x, y] = 255
         else:
             img3[x, y] = 0
+
 cv2.imshow('for', img3)
 cv2.moveWindow("for", 0, img1.shape[0] + 40)
 
 
 #Binarização normal
-ret,img2 = cv2.threshold(img1,127,255,cv2.THRESH_BINARY)
+limiar,img2 = cv2.threshold(img1,127,255,cv2.THRESH_BINARY)
 
 # Binarização gauciana
 img2 = cv2.adaptiveThreshold(img1,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
