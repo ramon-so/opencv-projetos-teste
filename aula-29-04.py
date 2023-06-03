@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-imO = cv2.imread('./images/anime/T.jpg')
+imO = cv2.imread('./images/anime/tanjiro.jpg')
 cv2.imshow('Imagem original', imO)
 cv2.moveWindow("Imagem original", 0,0)
 for x in range(0, imO.shape[1]):
