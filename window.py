@@ -1,4 +1,5 @@
 from tkinter import *
+from matplotlib import pyplot as plt
 import numpy as np
 import cv2
 
@@ -129,6 +130,21 @@ def ShowSobel():
     cv2.imshow('Sobel 64F', sobel64F)
     cv2.moveWindow("Sobel 64F", img1.shape[1] * 3 + 30, 0) 
 
+def ShowHist():
+    cv2.destroyAllWindows()
+    img1 = cv2.imread('./images/anime/tanjiro.jpg') 
+    cv2.imshow('Original', img1)
+    cv2.moveWindow("Original", img1.shape[1] + 10, 0) 
+
+    histb = cv2.calcHist([img1],[0],None,[256],[0,256])
+    histg = cv2.calcHist([img1],[1],None,[256],[0,256])
+    histr = cv2.calcHist([img1],[2],None,[256],[0,256])
+    plt.plot(histb, color='b')
+    plt.plot(histg, color='g')
+    plt.plot(histr, color='r')
+    plt.title('Image Histogram')
+    plt.show()
+
 gui = Tk()
 gui.title("Opencv Functions")
 
@@ -141,6 +157,9 @@ btn6 = Button(gui, text="Spliting", command=ShowSpliting)
 btn7 = Button(gui, text="Média", command=ShowAvarage)
 btn8 = Button(gui, text="Mediana", command=ShowMedian)
 btn9 = Button(gui, text="Solbel", command=ShowSobel)
+btn10 = Button(gui, text="Histograma", command=ShowHist)
+btn11 = Button(gui, text="Quantização", command=ShowMedian)
+btn12 = Button(gui, text="Equalização", command=ShowSobel)
 
 btn.grid(row=0, column=0)
 btn2.grid(row=0, column=1)
@@ -151,11 +170,14 @@ btn6.grid(row=0, column=5)
 btn7.grid(row=0, column=6)
 btn8.grid(row=0, column=7)
 btn9.grid(row=0, column=8)
+btn10.grid(row=0, column=9)
+btn11.grid(row=0, column=10)
+btn12.grid(row=0, column=11)
 
-button_width = max(btn.winfo_reqwidth(), btn2.winfo_reqwidth(), btn3.winfo_reqwidth(), btn4.winfo_reqwidth(), btn5.winfo_reqwidth(), btn6.winfo_reqwidth(), btn7.winfo_reqwidth(), btn8.winfo_reqwidth())
+button_width = btn.winfo_reqwidth() + btn2.winfo_reqwidth()+btn3.winfo_reqwidth()+ btn4.winfo_reqwidth()+ btn5.winfo_reqwidth()+ btn6.winfo_reqwidth()+ btn7.winfo_reqwidth()+ btn8.winfo_reqwidth()+ btn9.winfo_reqwidth()+ btn10.winfo_reqwidth()+ btn11.winfo_reqwidth()+ btn12.winfo_reqwidth()
 button_height = max(btn.winfo_reqheight(), btn2.winfo_reqheight(), btn3.winfo_reqheight(), btn4.winfo_reqheight(), btn5.winfo_reqheight(), btn6.winfo_reqheight(), btn7.winfo_reqheight(), btn8.winfo_reqheight())
 
-window_width = button_width * 5
+window_width = button_width
 window_height = button_height * 2
 gui.geometry(f"{window_width}x{window_height}")
 
