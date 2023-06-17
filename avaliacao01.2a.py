@@ -34,12 +34,15 @@ def GetImageOne():
 
 def countPixels(img2):
     count = 0
-    for x in range(0, img2.shape[0]-1):
-        for y in range(0, img2.shape[1]-1):
-            if(img2[x, y] != 0):
-                count += 1
+    count = np.sum(img2 == 0)
+    count2 = np.sum(img2 == 255)
+    # for x in range(0, img2.shape[0]-1):
+    #     for y in range(0, img2.shape[1]-1):
+    #         if(img2[x, y] == 0):
+    #             count += 1
     
     print('A quantidade de pixels pretos é: ', count, ' pixels')
+    print('A quantidade de pixels brancos é: ', count2, ' pixels')
 
 gui = Tk()
 gui.title("Contagem pixels pretos em imagem binarizada")
